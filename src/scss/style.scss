@@ -15,6 +15,8 @@ p {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
+  position: relative;
+  height: 640px;
 
   .content-wrap__btn-start {
     padding: 10px;
@@ -39,17 +41,25 @@ p {
     color: #fff;
     cursor: pointer;
   }
+  .content-wrap__toggle-mode {
+    position: fixed;
+    right: -250px;
+    bottom: 50%;
+  }
 }
 .game-table {
-  display: none;
+  display: flex;
   flex-flow: row wrap;
   justify-content: center;
   max-width: 500px;
   height: 500px;
   width: 100%;
+  position: fixed;
+  top: -550px;
+  transition: top 1s ease-in;
 
   &.show {
-    display: flex;
+    top: 60px;
   }
 }
 .game-table__box {
@@ -71,6 +81,12 @@ p {
       color: #fff!important;
     }
   }
+  &.last-checked {
+    border: 2px solid red;
+    span {
+      font-size: 25px!important;
+    }
+  }
   span {
     font-weight: 700;
   }
@@ -82,9 +98,15 @@ p {
   }
 }
 .restart-btn {
-  display: none;
+  display: block;
+  position: fixed;
+  bottom: -100px;
+  left: calc(50% - 70px);
+  transition: bottom 1s ease-in;
+
   &.show {
     display: block;
+    bottom: 300px;
   }
 }
 .timer {
@@ -96,7 +118,7 @@ p {
   box-sizing: border-box;
   text-align: center;
 
-  &.loose {
+  &.lose {
     color: tomato;
     font-weight: 700;
     font-size: 20px;
@@ -106,4 +128,50 @@ p {
     font-weight: 700;
     font-size: 20px;
   }
+}
+.toggle-mode {
+  display: flex;
+  flex-flow: column;
+  padding: 20px;
+  transition: all 1s;
+  width: 200px;
+
+  &.show {
+    right: 450px;
+    transition: right 1s;
+  }
+  .toggle-mode__text {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    margin-left: 0;
+    text-align: right;
+    transition: all 0.5s ease-in;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      font-size: 2rem;
+      margin-left: -20px;
+      transition: all 0.5s ease-in;
+    }
+    &.easy_mode {
+      color: forestgreen;
+    }
+    &.middle_mode {
+      color: darkorange;
+    }
+    &.hard_mode {
+      color: tomato;
+    }
+  }
+}
+.btn-switch {
+  padding: 5px;
+  font-size: 16px;
+  background-color: dimgrey;
+  color: #fff;
+  border-radius: 6px;
 }
